@@ -1,0 +1,16 @@
+while IFS= read -r domain; do echo "enumerating $domain wth ammass"; amass enum -d "$domain" -active | tee -a xxx.txt; 
+done < input.txt
+
+#too run sublist3r with amass 
+while IFS= read -r domain; do echo "enumerating subdomains with sublister; $domain";
+ sublist3r -d "$domain" > "$domain_oppo.txt";
+ echo  "enumerating with amass: $domain";
+ amass enum -d "$domain" -active >> "$domain_oppo.txt";
+  done < oppo-domains.txt 
+
+#too clean arbritrary data from files removing extra data from lines   
+sed -E 's/([^ ]+\.)?([^ ]+\.[a-zA-Z]{2,}).*/\1\2/g' subdomains_oppo.txt | tee subdomains_oppo2.txt 
+
+#too clean data by displaying only lines that have subdomains
+grep -E '([^ ]+\.)[^ ]+\.[a-zA-Z]{2,}' subdomains_oppo2.txt | tee subdomains_oppo3.txt
+
