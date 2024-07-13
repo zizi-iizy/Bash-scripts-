@@ -1,3 +1,10 @@
+‘Open’ or ‘Accepted’ means that the port or service running on the computer can be accessed by other network devices.
+‘Closed,’ ‘Denied’ or ‘Not Listening’ means that the port or service is not running on the computer and therefore cannot be exploited.
+‘Filtered,’ ‘Dropped’ or ‘Blocked’ means that access to the port or service is blocked by a firewall and therefore it cannot be exploited
+
+
+
+
 sudo proxychains nmap -Pn -sI  172.19.32.1  -T4 --reason 172.19.46.45 | t
 ee -a hecker.txt    
 # using idle scan to discover services with the timing. and a reason to show why its connecting 
